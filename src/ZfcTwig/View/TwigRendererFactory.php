@@ -30,4 +30,9 @@ class TwigRendererFactory implements FactoryInterface
 
         return $renderer;
     }
+
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null) {
+        return $this->createService($container);
+    }
+
 }

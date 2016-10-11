@@ -17,4 +17,8 @@ class ExtensionFactory implements FactoryInterface
     {
         return new Extension($serviceLocator->get('ZfcTwigRenderer'));
     }
+    
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null) {
+        return $this->createService($container);
+    }
 }

@@ -17,4 +17,8 @@ class TwigResolverFactory implements FactoryInterface
     {
         return new TwigResolver($serviceLocator->get('Twig_Environment'));
     }
+    
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null) {
+        return $this->createService($container);
+    }
 }

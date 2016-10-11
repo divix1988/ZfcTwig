@@ -27,9 +27,8 @@ class HelperPluginManagerFactory implements FactoryInterface
         $managerConfigs = isset($managerOptions['configs']) ? $managerOptions['configs'] : array();
 
         $baseManager = $serviceLocator->get('ViewHelperManager');
-        $twigManager = new HelperPluginManager(new Config($managerOptions));
-        $twigManager->setServiceLocator($serviceLocator);
-        $twigManager->addPeeringServiceManager($baseManager);
+        $twigManager = new HelperPluginManager($baseManager);
+        //$twigManager->addPeeringServiceManager($baseManager);
 
         foreach ($managerConfigs as $configClass) {
             if (is_string($configClass) && class_exists($configClass)) {
@@ -51,5 +50,9 @@ class HelperPluginManagerFactory implements FactoryInterface
         }
 
         return $twigManager;
+    }
+    
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null) {
+        return $this->createService($container);
     }
 }

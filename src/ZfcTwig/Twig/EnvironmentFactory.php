@@ -53,4 +53,8 @@ class EnvironmentFactory implements FactoryInterface
         // Extensions are loaded later to avoid circular dependencies (for example, if an extension needs Renderer).
         return $env;
     }
+    
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null) {
+        return $this->createService($container);
+    }
 }

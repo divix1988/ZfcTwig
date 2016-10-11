@@ -20,4 +20,9 @@ class ModuleOptionsFactory implements FactoryInterface
 
         return new ModuleOptions(isset($config['zfctwig']) ? $config['zfctwig'] : array());
     }
+
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null) {
+        return $this->createService($container);
+    }
+
 }

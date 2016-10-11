@@ -26,4 +26,8 @@ class StackLoaderFactory implements FactoryInterface
 
         return $templateStack;
     }
+    
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null) {
+        return $this->createService($container);
+    }
 }

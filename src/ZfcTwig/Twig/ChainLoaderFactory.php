@@ -33,4 +33,8 @@ class ChainLoaderFactory implements FactoryInterface
 
         return $chain;
     }
+    
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null) {
+        return $this->createService($container);
+    }
 }
